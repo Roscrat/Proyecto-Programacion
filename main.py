@@ -5,7 +5,7 @@ from ui.app_view import AppView
 
 
 def main(page: ft.Page) -> None:
-    db = DatabaseManager("restaurante.db")
+    db = DatabaseManager("la_buena_mesa.db")
     db.crear_tablas()
     AppView(page, db).construir()
 

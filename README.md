@@ -1,36 +1,31 @@
-# Control de gastos y pedidos de un restaurante
+# La Buena Mesa - Sistema de gestion para un restaurante
 
-Aplicacion de escritorio hecha con Flet y SQLite para llevar las cuentas de un restaurante familiar:
-gastos de mercado y servicios, menu con precios, pedidos por dia y dinero disponible.
+Aplicacion de escritorio hecha con Python, Flet y SQLite. Permite tomar pedidos por mesa,
+personalizar el almuerzo, cobrar, y llevar el control de gastos y de la plata disponible.
 
 ## Como ejecutarlo
 
     pip install -r requirements.txt
     python main.py
 
-La base de datos `restaurante.db` se crea sola la primera vez.
+La base de datos `la_buena_mesa.db` se crea sola la primera vez, con mesas, menu y opciones de ejemplo.
+
+## Acceso
+
+La aplicacion no tiene login ni roles: al abrirla se entra directo y todas las secciones
+estan disponibles: Inicio (punto de venta), Menu (productos y precios), Pedidos (historial),
+Mesas (comanda y cobro), Finanzas (resumen del dinero, aportes y gastos) y Configuracion
+(mesas y opciones del almuerzo).
 
 ## Estructura
 
     main.py                      punto de entrada
-    data/                        capa de persistencia
-        database_manager.py      conexion, commit y rollback con "with"
-        repositorio_base.py      clase abstracta con utilidades SQL
-        gasto_dao.py, categoria_dao.py, aporte_dao.py
-        plato_repository.py, pedido_repository.py
-    domain/                      capa de negocio
-        gasto.py, categoria.py, plato.py, pedido.py, aporte.py, resumen.py
-        validaciones.py
-    ui/                          capa de interfaz
-        app_view.py              ventana principal y navegacion
-        components/              un panel por seccion
+    data/                        capa de persistencia (SQL)
+    domain/                      capa de negocio (clases y validaciones)
+    ui/                          capa de interfaz Flet
+        app_view.py              barra lateral y navegacion
+        contexto.py              objeto compartido por las pantallas
+        tema.py                  colores y botones
+        components/              una pantalla o ventana por archivo
 
-## Base de datos
-
-- categorias_gasto (1) -> (N) gastos
-- pedidos (1) -> (N) detalles_pedido (N) <- (1) platos
-- aportes (tabla independiente para el dinero que se pone en el negocio)
-
-## Uso del monto
-
-Los montos se escriben sin puntos de miles (12500). La coma se toma como decimal.
+Hay una guia para estudiar el codigo en `GUIA_DE_ESTUDIO.md`.
